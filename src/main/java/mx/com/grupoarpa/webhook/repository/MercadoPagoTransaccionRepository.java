@@ -8,4 +8,6 @@ import mx.com.grupoarpa.webhook.entity.MercadoPagoTransaction;
 
 public interface MercadoPagoTransaccionRepository extends MongoRepository<MercadoPagoTransaction, String> {
 	Optional<MercadoPagoTransaction> findByEncodedId(String encodedId);
+	Optional<MercadoPagoTransaction> findByIdTransaction(String transactionId);
+	
 }

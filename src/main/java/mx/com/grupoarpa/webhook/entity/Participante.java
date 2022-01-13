@@ -30,7 +30,9 @@ public class Participante {
 	private String alergias;
 	private String tickets;
 	private String categoryAvalanche;
+	private String categoryTrail;
 	private String terms;
 	private String privacy;
 	private String responsal;
+	private String externalReference;
 }

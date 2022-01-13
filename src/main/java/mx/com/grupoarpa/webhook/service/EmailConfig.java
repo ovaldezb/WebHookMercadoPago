@@ -10,6 +10,7 @@ import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
+import javax.mail.SendFailedException;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
@@ -20,7 +21,7 @@ import javax.mail.internet.MimeMultipart;
 
 public class EmailConfig {
 
-	public static void sendmail(String email, String filename, String participanteNombre, String participanteApellidos, String tipoCompetencia, String costoInscripcion, String comision, String costoTotal, String descuento, String categoria, boolean isAvalance) throws AddressException, MessagingException, IOException {
+	public static void sendmail(String email, String filename, String participanteNombre, String participanteApellidos, String tipoCompetencia, String costoInscripcion, String comision, String costoTotal, String descuento, String categoria, boolean isAvalance) throws AddressException,  IOException, SendFailedException {
 		final String username = "hheisego1";
 		final String password = "Jafra2018!";
 		String mapsMessage = null;
@@ -467,13 +468,10 @@ public class EmailConfig {
 		         		+ "        margin-bottom: 0;\n"
 		         		+ "      \"\n"
 		         		+ "    >\n"
-		         		+ "      <strong\n"
-		         		+ "        ><span style=\"color: #ffffff\"\n"
-		         		+ "          >MUESTRA ESTE CORREO EN LA MESA DE\n"
-		         		+ "          REGISTRO ANTES DEL ARRANQUE DEL\n"
-		         		+ "          EVENTO</span\n"
-		         		+ "        ></strong\n"
-		         		+ "      >\n"
+		         		+ "      <strong><span style=\"color: #ffffff\">\n"
+		         		//+ "Fe de Erratas: Debido a un error en nuestro sistema, el correo que recibiste anteriormente contenia datos incorrectos de tu inscripcion como la hora que tenia 7:00am y el lugar de salida que tenia Rancho El Castillo, así como el COSTO DE INSCRIPCION que decia $400.00  y la COMISION que decia $64.00, el siguiente boleto ya contiene la información correcta<BR>          "
+		         		+ "         MUESTRA ESTE CORREO EN LA MESA DE REGISTRO ANTES DEL ARRANQUE DEL EVENTO</span></strong>\n"
+		         		
 		         		+ "    </h1>\n"
 		         		+ "  </td>\n"
 		         		+ "</tr>\n"
@@ -4110,8 +4108,10 @@ public class EmailConfig {
 	         
 	      }catch (MessagingException e) {
 	         e.printStackTrace();
+	         throw new SendFailedException(e.toString());
 	      } catch (UnsupportedEncodingException e) {
 			 e.printStackTrace();
+			 throw new UnsupportedEncodingException(e.toString());
 		}
 	}
 }
